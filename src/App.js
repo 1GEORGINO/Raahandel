@@ -13,7 +13,7 @@ class App extends React.Component {
   componentDidMount() {
     const query = `
     query {
-      allUsers {
+      User (id: "ckf2aggbo000101ji0cs6hovq") {
           id
           name
           role
@@ -30,19 +30,19 @@ class App extends React.Component {
     fetch(url, opts)
       .then((res) => res.json())
       .then((result) => {
-        console.log();
-        console.log(result);
+        // console.log(result);
         this.setState({
-          data: result,
+          data: [result.data.User],
         });
       });
   }
   render() {
+    console.log(this.state.data);
     return (
       <div className="bg">
         {productList.map((product) => {
           return (
-            <div className="mainContainer">
+            <div key={product.id} className="mainContainer">
               <div className="billedeContainer">
                 <img src={product.image} alt="produktBillede" />
               </div>
@@ -53,7 +53,7 @@ class App extends React.Component {
                 {product.unitSize} {product.unit}
               </div>
               <div className="kolli">
-                Kolli mængde: {product.price * product.bulkSize}
+                Kolli mængde: {product.bulkSize * product.price}
               </div>
               <div>Antal: {product.quantity}</div>
               {product.organic && (
@@ -61,12 +61,24 @@ class App extends React.Component {
               )}
               {product.cold && <div className="cold">C {product.cold}</div>}
               <div className="prisContainer">
-                <div className="pris">{product.price} kr,-</div>
+                <div className="pris">
+                  {product.price.toFixed(2).toString().replace(".", ",")} kr,-
+                </div>
               </div>
+
               <div>
                 {this.state.data !== undefined
-                  ? this.state.data.data.allUsers.map((user) => (
-                      <div>{user.id}</div>
+                  ? this.state.data.map((user) => (
+                      <div key={user.id}>
+                        {user.id}
+                        <br></br>
+                        {user.name}
+                        <br></br>
+                        {user.role}
+                        <br></br>
+                        {user.mail}
+                        <br></br>
+                      </div>
                     ))
                   : null}
               </div>
