@@ -13,7 +13,7 @@ class App extends React.Component {
   componentDidMount() {
     const query = `
     query {
-      User (id: "ckf2aggbo000101ji0cs6hovq") {
+      allUsers {
           id
           name
           role
@@ -32,7 +32,7 @@ class App extends React.Component {
       .then((result) => {
         // console.log(result);
         this.setState({
-          data: [result.data.User],
+          data: result.data.allUsers,
         });
       });
   }
@@ -43,6 +43,7 @@ class App extends React.Component {
         {productList.map((product) => {
           return (
             <div key={product.id} className="mainContainer">
+              {" "}
               <div className="billedeContainer">
                 <img src={product.image} alt="produktBillede" />
               </div>
@@ -65,8 +66,7 @@ class App extends React.Component {
                   {product.price.toFixed(2).toString().replace(".", ",")} kr,-
                 </div>
               </div>
-
-              <div>
+              <div className="mockData">
                 {this.state.data !== undefined
                   ? this.state.data.map((user) => (
                       <div key={user.id}>
