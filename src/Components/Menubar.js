@@ -5,9 +5,22 @@ export default class Menubar extends Component {
   render() {
     return (
       <div className="mb">
-        <Link to="/">Home</Link>
-        <Link to="/product">Products</Link>
-        <Link to="/user">Users</Link>
+        <Link
+          className="home"
+          to="/"
+          style={{ marginRight: 10, textDecoration: "none", color: "black" }}
+        >
+          Home
+        </Link>
+        <Link
+          to="/product"
+          style={{ marginRight: 10, textDecoration: "none", color: "black" }}
+        >
+          Products
+        </Link>
+        <Link to="/user" style={{ textDecoration: "none", color: "black" }}>
+          Users
+        </Link>
       </div>
     );
   }

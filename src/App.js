@@ -4,6 +4,7 @@ import "./App.css";
 import home from "./Components/Home";
 import product from "./Components/Product";
 import user from "./Components/User";
+import details from "./Components/Details";
 import Menubar from "./Components/Menubar";
 
 export default class App extends React.Component {
@@ -15,6 +16,7 @@ export default class App extends React.Component {
           <Route path="/" exact component={home}></Route>
           <Route path="/product" exact component={product}></Route>
           <Route path="/user" exact component={user}></Route>
+          <Route path="/details" exact component={details}></Route>
         </Switch>
       </div>
     );

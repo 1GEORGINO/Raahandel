@@ -2,6 +2,6 @@ import React, { Component } from "react";
 
 export default class Home extends Component {
   render() {
-    return <div className="bg">Praktik opgave 'Raahandel'</div>;
+    return <div className="forside">Praktik opgave 'Raahandel'</div>;
   }
 }

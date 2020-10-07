@@ -3,12 +3,19 @@
   height: 1000px;
 }
 
+.forside {
+  background-color: cornsilk;
+  height: 1000px;
+  font-size: 100px;
+}
+
 .bg1 {
   background-color: cornsilk;
   height: 1000px;
 }
 
 .mb {
+  padding: 20px;
   background-color: cornsilk;
 }
 

@@ -4,7 +4,7 @@ export default class Details extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      product: [],
+      data: [],
     };
   }
 
@@ -40,5 +40,45 @@ export default class Details extends Component {
           data: result.data.allProducts,
         });
       });
+  }
+  render() {
+    console.log(this.state.data);
+    return (
+      <div className="bg">
+        {this.state.data !== undefined
+          ? this.state.data.map((product) => {
+              return (
+                <div key={product.id} className="mainContainer">
+                  <div className="billedeContainer">
+                    <img src={product.image} alt="produktBillede" />
+                  </div>
+                  <div className="titel">{product.title}</div>
+                  {product.type && (
+                    <div className="type">Type: {product.type}</div>
+                  )}
+                  <div className="producent">Producent: {product.producer}</div>
+                  <div className="unit">
+                    {product.unitSize} {product.unit}
+                  </div>
+                  <div className="kolli">
+                    Kolli mængde: {product.bulkSize * product.price}
+                  </div>
+                  <div>Antal: {product.quantity}</div>
+                  {product.organic && (
+                    <div className="organic">Ø {product.organic}</div>
+                  )}
+                  {product.cold && <div className="cold">C {product.cold}</div>}
+                  <div className="prisContainer">
+                    <div className="pris">
+                      {product.price.toFixed(2).toString().replace(".", ",")}{" "}
+                      kr,-
+                    </div>
+                  </div>
+                </div>
+              );
+            })
+          : null}
+      </div>
+    );
   }
 }
