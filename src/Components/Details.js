@@ -10,49 +10,58 @@ export default class Details extends Component {
 
   componentDidMount() {
     const query = `
-            query {
-              allProducts {
-                  title
-                  type
-                  producer
-                  image
-                  unitSize
-                  bulkSize
-                  quantity
-                  organic
-                  cold
-                  price
-              }
-          }
-        
+    query Product($id: ID!) {
+      Product(id:$id) {
+          id
+          title
+          type
+          producer
+          image
+          unitSize
+          bulkSize
+          quantity
+          organic
+          cold
+          price
+          descriptions
+      }
+  }
           `;
     const url = "http://localhost:3000/";
     const opts = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ query }),
+      body: JSON.stringify({
+        query,
+        variables: { id: this.props.match.params.id },
+      }),
     };
     fetch(url, opts)
       .then((res) => res.json())
       .then((result) => {
+        //console.log(this.props);
         // console.log(result);
         this.setState({
-          data: result.data.allProducts,
+          data: [result.data.Product],
         });
       });
   }
   render() {
-    console.log(this.state.data);
+    //console.log(this.props);
+    //console.log(this.state.data);
     return (
       <div className="bg">
         {this.state.data !== undefined
           ? this.state.data.map((product) => {
               return (
-                <div key={product.id} className="mainContainer">
-                  <div className="billedeContainer">
+                
+                <div key={product.id} className="mainContainerD">
+                  <div className="billedeContainer1">
                     <img src={product.image} alt="produktBillede" />
                   </div>
-                  <div className="titel">{product.title}</div>
+                  <div className="tekst">
+                  <div className="titelD">{product.title}</div>
+                  <br></br>
                   {product.type && (
                     <div className="type">Type: {product.type}</div>
                   )}
@@ -65,16 +74,35 @@ export default class Details extends Component {
                   </div>
                   <div>Antal: {product.quantity}</div>
                   {product.organic && (
-                    <div className="organic">Ø {product.organic}</div>
+                    <div className="organicD">Ø {product.organic}</div>
                   )}
-                  {product.cold && <div className="cold">C {product.cold}</div>}
-                  <div className="prisContainer">
+                  {product.cold && <div className="coldD">C {product.cold}</div>}
+
+                  <br></br>
+
+                  <div>
+                    {product.descriptions.map((desc) => (
+                    <div>
+                    {desc.productDescription}
+                    <br></br>
+                    {desc.goodBecause}
+                    </div>
+                    ))}
+                  </div>
+
+
+                  <br></br>
+                  <br></br>
+                  <br></br>
+                  <div className="prisContainerD">
                     <div className="pris">
                       {product.price.toFixed(2).toString().replace(".", ",")}{" "}
                       kr,-
                     </div>
                   </div>
+                  </div>
                 </div>
+                
               );
             })
           : null}

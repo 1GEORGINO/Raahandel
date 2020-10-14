@@ -13,6 +13,7 @@ export default class Product extends Component {
     const query = `
         query {
           allProducts {
+              id
               title
               type
               producer
@@ -51,9 +52,9 @@ export default class Product extends Component {
               return (
                 <div key={product.id} className="mainContainer">
                   <div className="billedeContainer">
-                    <Link to="/details">
+                  <Link to={`/details/${product.id}`}>
                       <img src={product.image} alt="produktBillede" />
-                    </Link>
+                      </Link>
                   </div>
                   <div className="titel">{product.title}</div>
                   {product.type && (

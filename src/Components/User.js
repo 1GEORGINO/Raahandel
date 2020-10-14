@@ -43,8 +43,8 @@ export default class User extends Component {
         {this.state.data !== undefined
           ? this.state.data.map((user) => {
               return (
-                <div className="mainContainer1">
-                  <div key={user.id} className="id">
+                <div key={user.id} className="id">
+                  <div className="mainContainer1">
                     <div className="id">ID: {user.id}</div>
                     <div className="name">{user.name}</div>
                     <div className="role">{user.role}</div>
