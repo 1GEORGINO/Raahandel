@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 export default class Details extends Component {
   constructor(props) {
@@ -48,7 +49,7 @@ export default class Details extends Component {
   }
   render() {
     //console.log(this.props);
-    //console.log(this.state.data);
+    // console.log(this.state.data);
     return (
       <div className="bg">
         {this.state.data !== undefined
@@ -65,7 +66,11 @@ export default class Details extends Component {
                   {product.type && (
                     <div className="type">Type: {product.type}</div>
                   )}
+
+                  <Link to={`/user/${product.id}`}>
                   <div className="producent">Producent: {product.producer}</div>
+                  </Link>
+
                   <div className="unit">
                     {product.unitSize} {product.unit}
                   </div>
@@ -77,9 +82,7 @@ export default class Details extends Component {
                     <div className="organicD">Ø {product.organic}</div>
                   )}
                   {product.cold && <div className="coldD">C {product.cold}</div>}
-
                   <br></br>
-
                   <div>
                     {product.descriptions.map((desc) => (
                     <div>
@@ -89,8 +92,6 @@ export default class Details extends Component {
                     </div>
                     ))}
                   </div>
-
-
                   <br></br>
                   <br></br>
                   <br></br>

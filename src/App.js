@@ -6,6 +6,7 @@ import product from "./Components/Product";
 import user from "./Components/User";
 import details from "./Components/Details";
 import Menubar from "./Components/Menubar";
+import detailsuser from "./Components/DetailsUser"
 
 export default class App extends React.Component {
   render() {
@@ -17,6 +18,7 @@ export default class App extends React.Component {
           <Route path="/product" exact component={product}></Route>
           <Route path="/user" exact component={user}></Route>
           <Route path="/details/:id" exact component={details}></Route>
+          <Route path="/user/:id" exact component={detailsuser}></Route>
         </Switch>
       </div>
     );

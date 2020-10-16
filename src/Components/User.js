@@ -46,9 +46,9 @@ export default class User extends Component {
                 <div key={user.id} className="id">
                   <div className="mainContainer1">
                     <div className="id">ID: {user.id}</div>
-                    <div className="name">{user.name}</div>
-                    <div className="role">{user.role}</div>
-                    <div className="mail">{user.mail}</div>
+                    <div className="name">Name: {user.name}</div>
+                    <div className="role">Role: {user.role}</div>
+                    <div className="mail">Mail: {user.mail}</div>
                   </div>
                 </div>
               );
